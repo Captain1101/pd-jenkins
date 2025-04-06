@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('install-pip-deps') {
             steps {
-                echo 'Hello World'
+                echo "a"
+
             }
         }
     }
