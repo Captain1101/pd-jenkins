@@ -70,8 +70,6 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    //bat 'set HOMEDRIVE=C:'
-    //bat 'set HOMEPATH=\\Users\\danie'
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls"
     sh "pip install -r requirements.txt"
