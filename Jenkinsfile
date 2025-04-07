@@ -87,14 +87,12 @@ pipeline {
 def build(){
     echo "Installing all required depdendencies.."
     sh "ls -la"
-    //sh "npm install"
-    //sh "npm install pm2"
-    //sh "ls"
+    sh "npm install"
+    sh "npm install pm2"
+    sh "ls"  //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls -la" //delete
     sh "pip install -r requirements.txt"
-    sh "ls -la" //delete
-    git branch: 'main', poll: false, url: 'https://github.com/Captain1101/pd-jenkins.git'
     sh "ls -la" //delete
 }
 
@@ -103,8 +101,8 @@ def deploy(String environment, int port){
     sh "ls" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls" //delete
-    sh "npm install"
-    sh "npm install pm2"
+    //sh "npm install"
+    //sh "npm install pm2"
     sh "pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
     sh "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
 }
