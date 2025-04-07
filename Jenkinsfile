@@ -103,8 +103,10 @@ def deploy(String environment, int port){
     sh "ls" //delete
     sh "npm init -y"
     sh "npm install"
+    sh "ls" //delete
     sh "npm install pm2"
-    sh "pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
+    sh "ls" //delete
+    sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
     sh "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
 }
 
