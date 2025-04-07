@@ -87,6 +87,9 @@ pipeline {
 def build(){
     echo "Installing all required depdendencies.."
     sh "ls"
+    sh "npm install"
+    sh "npm install pm2"
+    sh "ls"
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls" //delete
     sh "pip install -r requirements.txt"
@@ -95,6 +98,7 @@ def build(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
+    sh "ls" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls" //delete
     sh "npm install"
