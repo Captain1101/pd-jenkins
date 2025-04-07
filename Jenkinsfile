@@ -101,8 +101,9 @@ def deploy(String environment, int port){
     sh "ls" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls" //delete
-    //sh "npm install"
-    //sh "npm install pm2"
+    sh "npm init -y"
+    sh "npm install"
+    sh "npm install pm2"
     sh "pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
     sh "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
 }
