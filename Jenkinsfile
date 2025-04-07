@@ -96,7 +96,7 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    bat "ls -la"
+    sh "ls -la"
     sh "npm install -g npm"
     sh "npm install -g pm2"
     sh "ls"  //delete
