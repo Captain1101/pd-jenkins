@@ -77,11 +77,11 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    sh "ls -la"
     sh "ls"  //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
-    sh "ls"
+    sh "npm install"
+    sh "npm test"
 }
 
 def deploy(String environment, int port){
