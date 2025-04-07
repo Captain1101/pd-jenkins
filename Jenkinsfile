@@ -1,8 +1,6 @@
 pipeline {
     agent any
     triggers{ pollSCM('*/5 * * * *') }
-    
-
     stages {
         stage('install-pip-deps') {
             steps {
@@ -11,7 +9,6 @@ pipeline {
                 }
             }
         }
-
         stage('deploy-to-dev') {
             steps {
                 script{
@@ -26,7 +23,6 @@ pipeline {
                 }
             }
         }
-        
         stage('deploy-to-staging') {
             steps {
                 script{
@@ -41,7 +37,6 @@ pipeline {
                 }
             }
         }
-
         stage('deploy-to-preprod') {
             steps {
                 script{
@@ -56,7 +51,6 @@ pipeline {
                 }
             }
         }
-
         stage('deploy-to-prod') {
             steps {
                 script{
@@ -74,13 +68,12 @@ pipeline {
     }
 }
 
-
 def build(){
     echo "Installing all required depdendencies.."
-    bat 'set HOMEDRIVE=C:'
-    bat 'set HOMEPATH=\\Users\\danie'
-    sh "ls"
+    //bat 'set HOMEDRIVE=C:'
+    //bat 'set HOMEPATH=\\Users\\danie'
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
+    sh "ls"
     sh "pip install -r requirements.txt"
     sh "npm init -y"
     sh "npm install pm2"
@@ -90,15 +83,7 @@ def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
-    //sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
-    //bat "pm2 start app.py --name \"greetings-app-${environment}\" --port ${port}"
-    //bat "pm2 start app.py --name \"greetings-app-${environment}\" --port=${port}"
-    //bat "pm2 start app.py --name \"greetings-app-${environment}\" ${port}"
-    //bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- ${port}"
-    //bat "pm2 start app.py --name \"greetings-app-${environment}\" -- ${port}"
-    // bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port ${port}"
     bat "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
-    sh "pm2 list" //delete
 }
 
 def test(String test_set, String environment){
