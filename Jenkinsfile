@@ -87,6 +87,7 @@ pipeline {
 def build(){
     echo "Installing all required depdendencies.."
     sh "ls"
+    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
     sh "npm install"
     sh "npm install pm2"
