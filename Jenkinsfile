@@ -4,16 +4,6 @@ pipeline {
     
 
     stages {
-
-        // stage('Check-Versions') {
-        //     steps {
-        //         bat 'node -v'
-        //         bat 'npm -v'
-        //         bat 'pip --version'
-        //         bat 'pm2 --version'
-        //     }
-        // }
-
         stage('install-pip-deps') {
             steps {
                 script{
@@ -21,15 +11,6 @@ pipeline {
                 }
             }
         }
-        //delet
-        // stage('Check-Versions') {
-        //     steps {
-        //         bat 'node -v'
-        //         bat 'npm -v'
-        //         bat 'pip --version'
-        //         bat 'pm2 --version'
-        //     }
-        // }
 
         stage('deploy-to-dev') {
             steps {
@@ -111,7 +92,7 @@ def deploy(String environment, int port){
     //sh "pm2 -v" //delete
     sh "ls" //delete
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
-    sh "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
+    sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port ${port}"
 }
 
 def test(String test_set, String environment){
