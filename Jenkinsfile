@@ -97,27 +97,27 @@ pipeline {
 def build(){
     echo "Installing all required depdendencies.."
     sh "ls -la"
-    sh "npm install -g npm"
-    sh "npm install -g pm2"
+    //sh "npm install -g npm"
+    //sh "npm install -g pm2"
     sh "ls"  //delete
-    sh "npm -v" //delete
-    sh "pm2 -v" //delete
+    //sh "npm -v" //delete
+    //sh "pm2 -v" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
-    sh "ls -la" //delete
+    //sh "ls -la" //delete
     sh "pip install -r requirements.txt"
-    sh "ls -la" //delete
+    //sh "ls -la" //delete
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
-    sh "ls" //delete
+    //sh "ls" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
-    sh "ls" //delete
+    //sh "ls" //delete
     sh "npm -v" //delete
-    sh "pm2 -v" //delete
+    //sh "pm2 -v" //delete
     //sh "npm init -y"
     //sh "npm install"
-    sh "ls" //delete
+    //sh "ls" //delete
     //sh "npm install pm2"
     sh "ls" //delete
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
