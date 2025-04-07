@@ -21,6 +21,16 @@ pipeline {
                 }
             }
         }
+        //delet
+        stage('Check-Versions') {
+            steps {
+                bat 'node -v'
+                bat 'npm -v'
+                bat 'pip --version'
+                bat 'pm2 --version'
+            }
+        }
+
         stage('deploy-to-dev') {
             steps {
                 script{
@@ -86,10 +96,12 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    sh "ls -la"
+    bat "ls -la"
     sh "npm install -g npm"
     sh "npm install -g pm2"
     sh "ls"  //delete
+    sh "npm -v" //delete
+    sh "pm2 -v" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls -la" //delete
     sh "pip install -r requirements.txt"
@@ -101,6 +113,8 @@ def deploy(String environment, int port){
     sh "ls" //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls" //delete
+    sh "npm -v" //delete
+    sh "pm2 -v" //delete
     //sh "npm init -y"
     //sh "npm install"
     sh "ls" //delete
