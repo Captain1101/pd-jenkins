@@ -22,14 +22,14 @@ pipeline {
             }
         }
         //delet
-        stage('Check-Versions') {
-            steps {
-                bat 'node -v'
-                bat 'npm -v'
-                bat 'pip --version'
-                bat 'pm2 --version'
-            }
-        }
+        // stage('Check-Versions') {
+        //     steps {
+        //         bat 'node -v'
+        //         bat 'npm -v'
+        //         bat 'pip --version'
+        //         bat 'pm2 --version'
+        //     }
+        // }
 
         stage('deploy-to-dev') {
             steps {
@@ -114,7 +114,7 @@ def deploy(String environment, int port){
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     //sh "ls" //delete
     sh "npm -v" //delete
-    //sh "pm2 -v" //delete
+    sh "pm2 -v" //delete
     //sh "npm init -y"
     //sh "npm install"
     //sh "ls" //delete
