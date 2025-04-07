@@ -80,7 +80,8 @@ def build(){
     sh "ls"
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
-    sh "npm install"
+    sh "npm init -y"
+    sh "npm install pm2"
 }
 
 def deploy(String environment, int port){
