@@ -5,14 +5,14 @@ pipeline {
 
     stages {
 
-        stage('Check-Versions') {
-            steps {
-                bat 'node -v'
-                bat 'npm -v'
-                bat 'pip --version'
-                bat 'pm2 --version'
-            }
-        }
+        // stage('Check-Versions') {
+        //     steps {
+        //         bat 'node -v'
+        //         bat 'npm -v'
+        //         bat 'pip --version'
+        //         bat 'pm2 --version'
+        //     }
+        // }
 
         stage('install-pip-deps') {
             steps {
@@ -88,6 +88,8 @@ def build(){
     echo "Installing all required depdendencies.."
     sh "ls"
     sh "pip install -r requirements.txt"
+    sh "npm install"
+    sh "npm install pm2"
 }
 
 def deploy(String environment, int port){
