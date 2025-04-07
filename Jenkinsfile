@@ -80,7 +80,8 @@ def build(){
     sh "ls"  //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
-    sh "npm install"
+    //sh "npm install"
+    sh "npm -v"
     sh "npm test"
 }
 
