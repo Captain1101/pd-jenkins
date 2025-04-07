@@ -90,7 +90,8 @@ def deploy(String environment, int port){
     sh "pm2 -v" //delete
     //sh "npm install pm2"
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
-    sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
+    //sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
+    sh "pm2 start app.py --name \"greetings-app-${environment}\" -- ${port}"
 }
 
 def test(String test_set, String environment){
