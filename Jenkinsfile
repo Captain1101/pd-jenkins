@@ -87,8 +87,8 @@ pipeline {
 def build(){
     echo "Installing all required depdendencies.."
     sh "ls -la"
-    sh "npm install"
-    sh "npm install pm2"
+    sh "npm install -g"
+    sh "npm install pm2 -g"
     sh "ls"  //delete
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "ls -la" //delete
