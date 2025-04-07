@@ -80,13 +80,12 @@ def build(){
     sh "ls"
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
-    sh "ls"
+    sh "npm install"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
-    sh "npm -v" //delete
     sh "npm install pm2"
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
     sh "pm2 -v" //delete
