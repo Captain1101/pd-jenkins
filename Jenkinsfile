@@ -77,12 +77,10 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    sh "ls"  //delete
+    sh "ls"
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
-    //sh "npm install"
-    sh "npm -v"
-    sh "npm test"
+    sh "ls"
 }
 
 def deploy(String environment, int port){
@@ -90,9 +88,8 @@ def deploy(String environment, int port){
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "npm -v" //delete
     //sh "npm install pm2"
-    //sh "pm2 -v" //delete
-    sh "ls" //delete
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
+    sh "pm2 -v" //delete
     bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port ${port}"
 }
 
