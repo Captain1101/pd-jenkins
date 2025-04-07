@@ -86,21 +86,21 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
-    bat "ls"
-    bat "pip install -r requirements.txt"
+    sh "ls"
+    sh "pip install -r requirements.txt"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
-    bat "npm install"
-    bat "pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
-    bat "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
+    sh "npm install"
+    sh "pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
+    sh "pm2 start app.py --name \"greetings-app-${environment}\" -- --port ${port}"
 }
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/course-js-api-framework.git'
-    bat "npm install"
-    bat "npm run ${test_set} ${test_set}_${environment}"
+    sh "npm install"
+    sh "npm run ${test_set} ${test_set}_${environment}"
 }
