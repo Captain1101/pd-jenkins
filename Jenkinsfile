@@ -93,7 +93,8 @@ def deploy(String environment, int port){
     //sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
     //bat "pm2 start app.py --name \"greetings-app-${environment}\" --port ${port}"
     //bat "pm2 start app.py --name \"greetings-app-${environment}\" --port=${port}"
-    bat "pm2 start app.py --name \"greetings-app-${environment}\" ${port}"
+    //bat "pm2 start app.py --name \"greetings-app-${environment}\" ${port}"
+    bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- ${port}"
     sh "pm2 list" //delete
 }
 
