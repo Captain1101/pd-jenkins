@@ -77,6 +77,8 @@ pipeline {
 
 def build(){
     echo "Installing all required depdendencies.."
+    bat 'set HOMEDRIVE=C:'
+    bat 'set HOMEPATH=\\Users\\danie'
     sh "ls"
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     sh "pip install -r requirements.txt"
@@ -91,7 +93,7 @@ def deploy(String environment, int port){
     //sh "npm install pm2"
     sh "pm2 delete \"greetings-app-${environment}\" & set \"errorlevel=0\""
     //sh "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
-    bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port ${port}"
+    bat "pm2 start app.py --name \"greetings-app-${environment}\" -- -- --port=${port}"
 }
 
 def test(String test_set, String environment){
